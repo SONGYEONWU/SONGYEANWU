@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>환율 변환기</title>
+  <script>
+    function convertCurrency() {
+      var amount = document.getElementById("amount").value;
+      var currency = document.getElementById("currency").value;
+      var result = document.getElementById("result");
+      var exchangeRate;
+
+      switch (currency) {
+        case "dollar":
+          exchangeRate = 1313;
+          break;
+        case "euro":
+          exchangeRate = 1416;
+          break;
+        case "yen":
+          exchangeRate = 893;
+          break;
+        case "yuan":
+          exchangeRate = 183;
+          break;
+        default:
+          exchangeRate = 1;
+          break;
+      }
+
+      if (isNaN(amount) || amount === "") {
+        result.innerHTML = "원화 금액을 입력하시오.";
+      } else {
+        var convertedAmount = amount / exchangeRate;
+        result.innerHTML = convertedAmount.toFixed(2) + " " + currency.toUpperCase();
+      }
+    }
+
+    function clearInput() {
+      document.getElementById("amount").value = "";
+      document.getElementById("result").innerHTML = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>환율 변환기</h1>
+  <input type="number" id="amount" placeholder="원화 금액을 입력하세요." step="0.01">
+  <br>
+  <select id="currency">
+    <option value="dollar">달러</option>
+    <option value="euro">유로</option>
+    <option value="yen">엔</option>
+    <option value="yuan">위안</option>
+  </select>
+  <br>
+  <button onclick="convertCurrency()">변환하기</button>
+  <button onclick="clearInput()">초기화</button>
+  <br>
+  <div id="result"></div>
+</body>
+</html>
